@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace test
-{
+
     public class Entrance : Node
     {
         private Node next;
@@ -16,29 +14,30 @@ namespace test
             this.setY(y);
         }
 
-        public Node getNext()
+        public List<Node> getNext()
         {
-            if(this.getWest() != null)
+            List<Node> paths = new List<Node>();
+            if (this.getWest() != null)
             {
-                return this.getWest();
+                paths.Add(this.getWest());
             }
-            if(this.getNorth() != null)
+            if (this.getNorth() != null)
             {
-                return this.getNorth();
+                paths.Add(this.getNorth());
             }
-            if(this.getEast() != null)
+            if (this.getEast() != null)
             {
-                return this.getEast();
+                paths.Add(this.getEast());
             }
-            if(this.getSouth() != null)
+            if (this.getSouth() != null)
             {
-                return this.getSouth();
+                paths.Add(this.getSouth());
             }
-            return this.next;
+            return paths;
         }
         public void setNext(Node next)
         {
             this.next = next;
         }
     }
-}
+

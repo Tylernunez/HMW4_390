@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace test
-{
+
     public class Exit : Node
     {
         private Node previous;
@@ -41,4 +39,4 @@ namespace test
             this.previous = previous;
         }
     }
-}
+

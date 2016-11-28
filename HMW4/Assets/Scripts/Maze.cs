@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
+using System.Text;
 
-namespace test
-{
+
+
     public class Maze
     {
         private char[,] mazeMatrix;
@@ -13,7 +15,6 @@ namespace test
         private int row;
         private Entrance enter;
         private Exit exit;
-        private bool exited;
 
         public Entrance getEnter()
         {
@@ -39,8 +40,13 @@ namespace test
         {
             this.mazeMatrix = mazeMatrix;
         }
+        public Node[,] getMazeNodes()
+        {
+            return this.mazeNodes;
+        }
         public Maze(string file)
         {
+
             string line;
             int i = 0;
             int j = 0;
@@ -62,6 +68,9 @@ namespace test
                     }
                 }
             }
+            this.findSpaces();
+            this.findAdjacency();
+            this.printMatrix();
         }
         public void setSize(string file)
         {
@@ -70,9 +79,7 @@ namespace test
             while ((line = maze.ReadLine()) != null)
             {
                 row++;
-
                 col = line.Length;
-
             }
 
         }
@@ -87,20 +94,21 @@ namespace test
 
                 }
             }
-            Console.ReadKey();
         }
-        public void printPath()
+        /*public void printPath()
         {
-            int count = 0;
+            int time = 0;
             exited = false;
             Node current = new Node();
             while(exited == false)
             {
-                if (count == 0)
+                List<Node> paths = new List<Node>();
+                if (time == 0)
                 {
+                    
                     Console.Write("Entrance(" + enter.getX() + "," + enter.getY() + ")");
-                    current = enter.getNext();
                     Console.WriteLine("");
+                    
                 }
                Console.Write("Next(" + current.getX() + "," + current.getY() + ")");
                Console.WriteLine("");
@@ -109,7 +117,7 @@ namespace test
             }
             Console.ReadKey();
 
-        }
+        }*/
         public void checkDirectional(int i, int j)
         {
             if (mazeNodes[i, j - 1] is Path)
@@ -304,6 +312,14 @@ namespace test
                 }
             }
         }
+        public int getCol()
+        {
+        return this.col;
+        }
+        public int getRow()
+        {
+        return this.row;
+        }
     }
 
-}
+

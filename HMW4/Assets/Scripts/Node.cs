@@ -2,19 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace test
-{
+
     public class Node
     {
+        private Object data;
+        private Node next;
         private Node west;
         private Node north;
         private Node east;
         private Node south;
         private int X;
         private int Y;
+        private int distance;
+        private bool known;
+        private bool explored;
+        private string color;
+        private int finishTime;
 
+        public int getDistance()
+        {
+            return this.distance;
+        }
+        public void setDistance(int distance)
+        {
+            this.distance = distance;
+        }
         public int getX()
         {
             return this.X;
@@ -63,9 +76,74 @@ namespace test
         {
             this.south = south;
         }
-        public List<Node> getNext()
+        public Node getNext()
         {
-
+            return this.next;
         }
-    }
+        public void setNext(Node next)
+        {
+            this.next = next;
+        }
+        public Object getData()
+        {
+            return this.data;
+        }
+        public void setData(Object data)
+        {
+            this.data = data;
+        }
+        public List<Node> getPaths()
+        {
+            List<Node> paths = new List<Node>();
+            if (this.getWest() != null)
+            {
+                paths.Add(this.getWest());
+            }
+            if (this.getNorth() != null)
+            {
+                paths.Add(this.getNorth());
+            }
+            if (this.getEast() != null)
+            {
+                paths.Add(this.getEast());
+            }
+            if (this.getSouth() != null)
+            {
+                paths.Add(this.getSouth());
+            }
+            return paths;
+        }
+        public bool getKnown()
+        {
+            return this.known;
+        }
+        public void setKnown(bool known)
+        {
+            this.known = known;
+        }
+        public bool getExplored()
+        {
+            return this.explored;
+        }
+        public void setExplored(bool explored)
+        {
+            this.explored = explored;
+        }
+        public string getColor()
+        {
+            return this.color;
+        }
+        public void setColor(string color)
+        {
+            this.color = color;
+        }
+        public int getFinishTime()
+        {
+            return this.finishTime;
+        }
+        public void setFinishTime(int finishTime)
+        {
+            this.finishTime = finishTime;
+        }
 }
+
